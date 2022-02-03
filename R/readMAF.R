@@ -60,14 +60,14 @@ readMAF <- function(maf.file,
   # ===============================
   # read data in
   
-+  if(missing(maf.df)){
-+    if(grepl(pattern = 'gz$', maf.file)){
-+      suppressWarnings(
-+        maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = quote, ...)
-+      )
-+    } else {
-+      maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = quote, ...)
-+    }
+  if(missing(maf.df)){
+    if(grepl(pattern = 'gz$', maf.file)){
+      suppressWarnings(
+        maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = quote, ...)
+      )
+    } else {
+      maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = quote, ...)
+    }
   }
 
   # =============================

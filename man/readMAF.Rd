@@ -16,6 +16,7 @@ readMAF(
   mutation.type.to.class.df = NA,
   sep = "\\t",
   quote = "",
+  maf.df,
   ...
 )
 }
@@ -54,6 +55,9 @@ which indicates to use default mappoings.}
 
 \item{quote}{the set of quoting characters. To disable quoting altogether,
 use \code{quote = ""}.  Default \code{quote = ""}.}
+
+\item{maf.df}{data frame of maf file. Default \code{NA},
+which indicates that no data frame is provided by default.}
 
 \item{...}{additional parameters pass to \code{\link[utils]{read.table}}.}
 }
