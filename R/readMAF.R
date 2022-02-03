@@ -27,6 +27,8 @@
 #'@param sep separator of columns. Default \code{sep = "\\t"}.
 #'@param quote the set of quoting characters. To disable quoting altogether,
 #'  use \code{quote = ""}.  Default \code{quote = ""}.
+#'@param maf.df data frame of maf file. Default \code{NA},
+#'  which indicates that no data frame is provided by default.
 #'@param ... additional parameters pass to \code{\link[utils]{read.table}}.
 #'
 #'@importFrom utils write.table read.table
@@ -46,9 +48,10 @@ readMAF <- function(maf.file,
                     mutation.type.to.class.df = NA,
                     sep = "\t",
                     quote = "",
+                    maf.df,
                     ...) {
-  if(missing(maf.file)){
-    stop("maf.file is missing")
+  if(missing(maf.file) & missing(maf.df)){
+    stop("maf.file and maf.dat are missing, you must provide one or the other")
   }
 
   # ===============================
@@ -56,12 +59,15 @@ readMAF <- function(maf.file,
   # - check "Mutation_Status" as "Somatic"
   # ===============================
   # read data in
-  if(grepl(pattern = 'gz$', maf.file)){
-    suppressWarnings(
-      maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = quote, ...)
-    )
-  } else {
-    maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = quote, ...)
+  
++  if(missing(maf.df)){
++    if(grepl(pattern = 'gz$', maf.file)){
++      suppressWarnings(
++        maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = quote, ...)
++      )
++    } else {
++      maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = quote, ...)
++    }
   }
 
   # =============================
