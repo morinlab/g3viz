@@ -23,6 +23,8 @@ Suggests:
     knitr,
     rmarkdown,
     kableExtra
+Remotes: 
+    cBioPortal/cgdsr
 URL: https://github.com/G3viz/g3viz
 BugReports: https://github.com/G3viz/g3viz/issues
 RoxygenNote: 7.1.1
